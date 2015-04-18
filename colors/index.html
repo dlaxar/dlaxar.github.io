@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Show me that color!</title>
+
+	<style type="text/css">
+
+	body {
+		transition: background 1s;
+		-webkit-transition: background 1s; /* Safari */
+	}
+
+	</style>
+</head>
+<body>
+
+<section>
+	<form>
+		<input type="text" id="color-input">
+	</form>	
+</section>
+
+
+<script type="text/javascript">
+	var input = document.querySelector('#color-input');
+	var timer;
+	input.onkeyup = function onKeyUp () {
+
+		if(timer) {
+			clearTimeout(timer);
+		}
+
+		timer = setTimeout(setColor, 1000);
+	}
+
+	function setColor() {
+		var text = input.value;
+		text = text.trim();
+
+		if(text.match(/#?([a-f0-9]{3}|[a-f0-9]{6})/)) {
+			console.log(text);
+			if(text.length === 3 || text.length === 6) {
+				text = '#' + text;
+			}
+		}
+
+		document.body.style.background = text;
+	}
+</script>
+
+</body>
+</html>
